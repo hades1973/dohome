@@ -1,0 +1,22 @@
+\begin{frame}[plain]
+\uncover<2->{
+	(2) 计算$A_{s}$配筋计算
+	 \vspace{-0.8em} {\small
+\begin{align*}
+	\alpha_s &= \frac{M_2}{\alpha_1 fc b h^2_0} = \frac{ {{printf "%4.1f" .M_2}}\times10^6 }{1.0\times {{.B}}\times {{.H_0}}^2}= {{printf "%4.3f" .Alphas}} \\
+	\alpha_{s,max} &= \xi_b(1-0.5\xi_b) = {{printf "%4.3f" .Alphas_max}} \\ 
+	\alpha_s &< \alpha_{s,max}, \text{纵向受拉钢筋屈服} \\
+	\xi &= 1- \sqrt{1 - 2\alpha_s} = 1 - \sqrt{1- 2\times {{printf "%4.3f" .Alphas}} } = {{printf "%4.3f" .Xi}} \\
+	x &= \xi h_0 = {{printf "%4.3f" .Xi}}\times {{.H_0}} = {{printf "%4.1f" .X}} \\
+	2a'_s &= 2\times {{.Ass}} = {{.DoubleAss}} \\
+		x &< 2a'_s, \text{受压纵筋不屈服，取}x=2a'_s，使用对受压钢筋合力点去矩的方程，有： \\
+	A_s &= \frac{M}{f_y (h_0 - a'_s)} \\
+            &= \frac{ {{.M}}\times10^6 }{ {{.Fy}}\times( {{.H_0}} - {{.Ass}} ) } 
+            &= {{printf "%4.1f" .ASt}}mm^2 
+		x &> 2a'_s, \text{受压纵筋屈服} \\
+		A_s &= \frac{\alpha_1 fc b x + f'_y A'_s}{f_y} \\
+                    &= \frac{ 1.0\times {{.Fc}}\times {{.B}}\times {{printf "%4.1f" .X}} + {{.Fy}}\times {{printf "%4.1f" .ASc}} }{ {{.Fy}} } \\
+                    &= {{printf "%4.1f" .ASt}} mm^2
+\end{align*}
+}}
+\end{frame}

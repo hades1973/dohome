@@ -1,0 +1,76 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {{.Title}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]{ {{.Title}} } \vspace{-0.1em}
+	%%{\small
+	已知：T形截面梁$b= {{.B}} ,h= {{.H}} ,b'_f= {{.Bff}} ,h'_f= {{.Hff}} mm^2$承受弯矩设计值$M= {{.M}} kN\cdot m$。
+	混凝土强度等级{{.C}}，受力纵筋采用{{.S}}级钢筋。取$a'_s={{.A}}$mm。
+
+	求：所需受拉纵筋面积$A_s$
+%%   	\begin{center}
+%%	\scalebox{0.3}{\includegraphics{./figures/BasicJob1.png}}
+%%	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {{.Title}}--判断截面类型
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 判断截面类型
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	a_s &= {{.A}}mm \\
+	h_0 &= h- a_s = {{.H}} - {{.A}} = {{.H_0}}mm \\
+	M_j &= \alpha_1 f_c b'_f h'_f (h_0 - 0.5h'f) \\
+	    &= 1.0\times {{.F_c}}\times {{.Bff}}\times {{.Hff}}\times( {{.H_0}} - 0.5\times {{.Hff}} ) N\cdot mm \\
+	    &= {{printf "%4.1f" .M_xEqHff}} kN\cdot m \\
+	M &= {{.M}} > M_j, \text{二类T形截面}
+\end{align*} 
+}}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {{.Title}}--计算受压区高度
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(2) 计算受压区高度
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	M_1 &= \alpha_1 f_c (b'_f - b) h'_f (h_0 - 0.5h'f) \\
+	    &= 1.0\times {{.F_c}}\times ( {{.Bff}} - {{.B}} )\times {{.Hff}} \times( {{.H_0}} - 0.5\times {{.Hff}} ) N\cdot mm\\
+	    &= {{printf "%4.1f" .M_1}} kN\cdot m \\
+	M_2 &= M - M_1 = {{.M}} - {{printf "%4.1f" .M_1}} = {{printf "%4.1f" .M_2}} kN\cdot m\\
+	\alpha_s &= \frac{M_2}{\alpha_1 f_c b h^2_0} = \frac{ {{printf "%4.1f" .M_2}}\times10^6 }{ 1.0\times {{.F_c}}\times {{.B}}\times {{.H_0}}^2 }={{printf "%5.3f" .Alpha_s}} \\
+	\xi &= 1 - \sqrt{1-2\alpha_s} = 1 - \sqrt{1-2\times {{printf "%5.3f" .Alpha_s}} } = {{printf "%5.3f" .Xi}} \\
+	\xi_b &= {{.Xi_b}} > \xi, \text{受拉纵筋屈服} \\
+	x &= \xi h_0 = {{printf "%5.3f" .Xi}}\times {{.H_0}} = {{printf "%4.1f" .X}} mm \\
+\end{align*} 
+}}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {{.Title}}--计算A_s
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(3) 计算$A_s$
+\vspace{-0.8em} {\small 
+\uncover<2->{
+\begin{align*}
+	A_s &= \frac{\alpha_1 f_c (b'_f -b) h'_f + \alpha_1 f_c b x}{f_y} \\
+	    &=\frac{ 1.0\times {{.F_c}}\times ({{.Bff}} - {{.B}} )\times {{.Hff}} }{ {{.F_y}} } \\ 
+	    &+ \frac{1.0\times {{.F_c}}\times {{.B}}\times {{printf "%4.1f" .X}} }{ {{.F_y}} } \\
+	    &= {{printf "%5.1f" .A_s}} mm^2 
+\end{align*}
+}
+
+\uncover<3-> {
+	(4) 最小配筋率验算 \\
+	最小配筋率计算，略。	
+}
+}
+\end{frame}

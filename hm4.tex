@@ -1,0 +1,186 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 受剪承载力题1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]{ 受剪承载力题1 } \vspace{-0.1em}
+	%%{\small
+	已知：某简支梁承受恒载标准值（含自重）$g_k=15.6kN/m$，活载标准值$q_k=10.7kN/m$。
+	梁计算跨度$l_0=6m$，净跨$l_n=5.76m$,矩形截面$b\times h=200\times 450mm^2$。
+	混凝土强度等级C40，受力纵筋采用HRB400级钢筋, 受力箍筋采用HPB300级钢筋。
+
+	求：所需的抗剪箍筋。
+%%   	\begin{center}
+%%	\scalebox{0.3}{\includegraphics{./figures/BasicJob1.png}}
+%%	\end{center}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 受剪承载力题1--内力计算
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 内力计算
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+%%% 
+	p &= 1.2g_k + 1.4 q_k = 1.2\times 15.6 + 1.4\times 10.7 =  33.7 \\
+	V &= \frac{1}{2}pl_n = \frac{1}{2}\times  33.7\times 5.76 ==   97.1 kN \\
+%%% 
+   \end{align*}
+}}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 受剪承载力题1--配筋计算
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+   (2) 验算最小截面尺寸条件
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	   V_u &= 0.25\beta_c f_c b h_0 = 0.25\times 1\times 19.1\times 200\times 415 N \\
+	        =  396.3 kN \\
+%%% 
+	V &< V_u, \text{满足最小截面尺寸要求}	\\
+%%%
+\end{align*}
+}}
+  (3) 由基本公式可推出
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	V &= 0.7f_t bh_0 + f_{yv}\rho_{sv} bh_0 \\
+	\rho_{sv} &= \frac{V - 0.7f_t b h_0}{f_{yv}bh_0} \\
+       &= \frac{   97.1\times10^3 - 0.7\times 1.71\times 200\times 415 }{ 270\times 200\times 415 } \\
+	&= -0.010\%
+\end{align*}
+}}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 受剪承载力题1--选配箍筋
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(4) 最小配箍率
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	\rho_{sv,min} &= 0.24\frac{f_t}{f_{yv}} = 0.24\times \frac{ 1.71 }{ 270 } =  0.152\% \\
+%%%	
+	\rho_{sv} &< \rho_{sv,min}, \text{取} \\
+	\rho_{sv} &=  0.152\% \\
+%%%
+\end{align*} 
+}}
+	\uncover<2->{
+	(5) 取$\phi 8$双肢箍 
+\vspace{-0.8em} {\small 
+\begin{align*}	
+	n &= 2,\quad A_{sv1} =   50.3 \\
+%%%	
+	s &= \frac{A_{sv}}{\rho b} = \frac{2\times   50.3 } {  0.152\% \times 200 } 
+	   =   331 \\
+%%%
+   	&\text{据规范表9.2.9查得：}s_{max} = 300\text{~,故取} \\
+%%%	
+	   s&= 300
+%%%
+\end{align*}
+}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 受剪承载力题2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]{ 受剪承载力题2 } \vspace{-0.1em}
+	%%{\small
+	已知：某简支梁承受恒载标准值（含自重）$g_k=9.5kN/m$，活载标准值$q_k=8kN/m$。
+	梁计算跨度$l_0=5m$，净跨$l_n=4.76m$,矩形截面$b\times h=200\times 450mm^2$。
+	混凝土强度等级C40，受力纵筋采用HRB400级钢筋, 受力箍筋采用HPB300级钢筋。
+
+	求：所需的抗剪箍筋。
+%%   	\begin{center}
+%%	\scalebox{0.3}{\includegraphics{./figures/BasicJob1.png}}
+%%	\end{center}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 受剪承载力题2--内力计算
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 内力计算
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+%%% 	
+	g'_k &= 25\times 200\times 450\times10^{-6} =  2.25 kN/m \\
+	p &= 1.2(g_k+g'_k) + 1.4 q_k 
+	   = 1.2\times ( 9.5 + 2.2 ) + 1.4\times 8 =  25.3 kN/m\\
+	V &= \frac{1}{2}pl_n = \frac{1}{2}\times  25.3\times 4.76 ==   60.2 kN \\
+%%% 
+   \end{align*}
+}}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 受剪承载力题2--配筋计算
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+   (2) 验算最小截面尺寸条件
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	   V_u &= 0.25\beta_c f_c b h_0 = 0.25\times 1\times 19.1\times 200\times 415 N \\
+	        =  396.3 kN \\
+%%% 
+	V &< V_u, \text{满足最小截面尺寸要求}	\\
+%%%
+\end{align*}
+}}
+  (3) 由基本公式可推出
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	V &= 0.7f_t bh_0 + f_{yv}\rho_{sv} bh_0 \\
+	\rho_{sv} &= \frac{V - 0.7f_t b h_0}{f_{yv}bh_0} \\
+       &= \frac{   60.2\times10^3 - 0.7\times 1.71\times 200\times 415 }{ 270\times 200\times 415 } \\
+	&= -0.175\%
+\end{align*}
+}}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 受剪承载力题2--选配箍筋
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(4) 最小配箍率
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	\rho_{sv,min} &= 0.24\frac{f_t}{f_{yv}} = 0.24\times \frac{ 1.71 }{ 270 } =  0.152\% \\
+%%%	
+	\rho_{sv} &< \rho_{sv,min}, \text{取} \\
+	\rho_{sv} &=  0.152\% \\
+%%%
+\end{align*} 
+}}
+	\uncover<2->{
+	(5) 取$\phi 8$双肢箍 
+\vspace{-0.8em} {\small 
+\begin{align*}	
+	n &= 2,\quad A_{sv1} =   50.3 \\
+%%%	
+	s &= \frac{A_{sv}}{\rho b} = \frac{2\times   50.3 } {  0.152\% \times 200 } 
+	   =   331 \\
+%%%
+   	&\text{据规范表9.2.9查得：}s_{max} = 300\text{~,故取} \\
+%%%	
+	   s&= 300
+%%%
+\end{align*}
+}}
+\end{frame}

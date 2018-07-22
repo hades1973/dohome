@@ -1,0 +1,148 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 题1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]{ 题1 } \vspace{-0.1em}
+	%%{\small
+	已知：T形截面梁$b= 250 ,h= 700 ,b'_f= 600 ,h'_f= 100 mm^2$承受弯矩设计值$M= 550 kN\cdot m$。
+	混凝土强度等级C30，受力纵筋采用HRB400级钢筋。取$a'_s=60$mm。
+
+	求：所需受拉纵筋面积$A_s$
+%%   	\begin{center}
+%%	\scalebox{0.3}{\includegraphics{./figures/BasicJob1.png}}
+%%	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 题1--判断截面类型
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 判断截面类型
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	a_s &= 60mm \\
+	h_0 &= h- a_s = 700 - 60 = 640mm \\
+	M_j &= \alpha_1 f_c b'_f h'_f (h_0 - 0.5h'f) \\
+	    &= 1.0\times 14.3\times 600\times 100\times( 640 - 0.5\times 100 ) N\cdot mm \\
+	    &= 506.2 kN\cdot m \\
+	M &= 550 > M_j, \text{二类T形截面}
+\end{align*} 
+}}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 题1--计算受压区高度
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(2) 计算受压区高度
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	M_1 &= \alpha_1 f_c (b'_f - b) h'_f (h_0 - 0.5h'f) \\
+	    &= 1.0\times 14.3\times ( 600 - 250 )\times 100 \times( 640 - 0.5\times 100 ) N\cdot mm\\
+	    &= 295.3 kN\cdot m \\
+	M_2 &= M - M_1 = 550 - 295.3 = 254.7 kN\cdot m\\
+	\alpha_s &= \frac{M_2}{\alpha_1 f_c b h^2_0} = \frac{ 254.7\times10^6 }{ 1.0\times 14.3\times 250\times 640^2 }=0.174 \\
+	\xi &= 1 - \sqrt{1-2\alpha_s} = 1 - \sqrt{1-2\times 0.174 } = 0.192 \\
+	\xi_b &= 0.518 > \xi, \text{受拉纵筋屈服} \\
+	x &= \xi h_0 = 0.192\times 640 = 123.2 mm \\
+\end{align*} 
+}}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 题1--计算A_s
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(3) 计算$A_s$
+\vspace{-0.8em} {\small 
+\uncover<2->{
+\begin{align*}
+	A_s &= \frac{\alpha_1 f_c (b'_f -b) h'_f + \alpha_1 f_c b x}{f_y} \\
+	    &=\frac{ 1.0\times 14.3\times (600 - 250 )\times 100 }{ 360 } \\ 
+	    &+ \frac{1.0\times 14.3\times 250\times 123.2 }{ 360 } \\
+	    &= 2613.5 mm^2 
+\end{align*}
+}
+
+\uncover<3-> {
+	(4) 最小配筋率验算 \\
+	最小配筋率计算，略。	
+}
+}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 题2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]{ 题2 } \vspace{-0.1em}
+	%%{\small
+	已知：T形截面梁$b= 250 ,h= 700 ,b'_f= 600 ,h'_f= 100 mm^2$承受弯矩设计值$M= 100 kN\cdot m$。
+	混凝土强度等级C30，受力纵筋采用HRB400级钢筋。取$a'_s=60$mm。
+
+	求：所需受拉纵筋面积$A_s$
+%%   	\begin{center}
+%%	\scalebox{0.3}{\includegraphics{./figures/BasicJob1.png}}
+%%	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 题2--判断截面类型
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 判断截面类型
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	a_s &= 60mm \\
+	h_0 &= h- a_s = 700 - 60 = 640mm \\
+	M_j &= \alpha_1 f_c b'_f h'_f (h_0 - 0.5h'_f) \\
+	    &= 1.0\times 14.3\times 600\times 100\times( 640 - 0.5\times 100 ) N\cdot mm \\
+	    &= 506.2 kN\cdot m \\
+	M &= 100 < M_j, \text{第一类T形截面}
+\end{align*} 
+}}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 题2--计算受压区高度
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(2) 计算受压区高度
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	\alpha_s &= \frac{M}{\alpha_1 f_c b'_f h^2_0} = \frac{ 100.0\times10^6 }{ 1.0\times 14.3\times 600\times 640^2 }=0.028 \\
+	\alpha_{s,max} &= \xi_b(1 - 0.5\xi_b)= 0.518\times (1 - 0.5\times 0.518 ) = 0.384 \\
+	\alpha_s &< \alpha_{s,max}, \text{受拉纵筋屈服} \\
+	\xi &= 1 - \sqrt{1-2\alpha_s} = 1 - \sqrt{1-2\times 0.028 } = 0.029 \\
+	x &= \xi h_0 = 0.029\times 640 = 18.5 mm \\
+\end{align*} 
+}}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 题2--计算A_s
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(3) 计算$A_s$
+\vspace{-0.8em} {\small 
+\uncover<2->{
+\begin{align*}
+	A_s &= \frac{\alpha_1 f_c b'_f x}{f_y} \\
+	    &= \frac{1.0\times 14.3\times 600\times 18.5 }{ 360 } \\
+	    &= 440.4 mm^2 
+\end{align*}
+}
+
+\uncover<3-> {
+	(4) 最小配筋率验算 \\
+	最小配筋率计算，略。	
+}
+}
+\end{frame}

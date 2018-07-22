@@ -1,0 +1,107 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {{.Q.Title}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]{ {{.Q.Title}} } \vspace{-0.1em}
+	%%{\small
+	已知：某简支梁承受恒载标准值（含自重）$g_k={{.Q.Lgk}}kN/m$，活载标准值$q_k={{.Q.Lqk}}kN/m$。
+	梁计算跨度$l_0={{.Q.L0}}m$，净跨$l_n={{.Q.Ln}}m$,矩形截面$b\times h={{.Q.B}}\times {{.Q.H}}mm^2$。
+	混凝土强度等级{{.Q.C}}，受力纵筋采用{{.Q.S}}级钢筋, 受力箍筋采用{{.Q.SV}}级钢筋。
+
+	求：所需的抗剪箍筋。
+%%   	\begin{center}
+%%	\scalebox{0.3}{\includegraphics{./figures/BasicJob1.png}}
+%%	\end{center}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {{.Q.Title}}--内力计算
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 内力计算
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+%%% {{if .Q.CaculateSelfWeight}}	
+	g'_k &= 25\times {{.Q.B}}\times {{.Q.H}}\times10^{-6} = {{printf "%5.2f" .Lgk_self}} kN/m \\
+	p &= 1.2(g_k+g'_k) + 1.4 q_k 
+	   = 1.2\times ( {{.Q.Lgk}} + {{printf "%3.1f" .Lgk_self}} ) + 1.4\times {{.Q.Lqk}} = {{printf "%5.1f" .Lp}} kN/m\\
+	V &= \frac{1}{2}pl_n = \frac{1}{2}\times {{printf "%5.1f" .Lp}}\times {{.Q.Ln}} == {{printf "%6.1f" .V}} kN \\
+%%% {{else}}
+	p &= 1.2g_k + 1.4 q_k = 1.2\times {{.Q.Lgk}} + 1.4\times {{.Q.Lqk}} = {{printf "%5.1f" .Lp}} \\
+	V &= \frac{1}{2}pl_n = \frac{1}{2}\times {{printf "%5.1f" .Lp}}\times {{.Q.Ln}} == {{printf "%6.1f" .V}} kN \\
+%%% {{end}}
+   \end{align*}
+}}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {{.Q.Title}}--配筋计算
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+   (2) 验算最小截面尺寸条件
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	   V_u &= 0.25\beta_c f_c b h_0 = 0.25\times 1\times {{.F_c}}\times {{.Q.B}}\times {{.H_0}} N \\
+	        = {{printf "%6.1f" .VuLimit}} kN \\
+%%% {{if .VGreatThanVuLimit}}	   
+	V &> V_u, \text{梁截面尺寸过小，需重新选择截面尺寸}	\\
+%%%{{else}}
+	V &< V_u, \text{满足最小截面尺寸要求}	\\
+%%%{{end}}
+\end{align*}
+}}
+  (3) 由基本公式可推出
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	V &= 0.7f_t bh_0 + f_{yv}\rho_{sv} bh_0 \\
+	\rho_{sv} &= \frac{V - 0.7f_t b h_0}{f_{yv}bh_0} \\
+       &= \frac{ {{printf "%6.1f" .V}}\times10^3 - 0.7\times {{.F_t}}\times {{.Q.B}}\times {{.H_0}} }{ {{.F_yv}}\times {{.Q.B}}\times {{.H_0}} } \\
+	&= {{printf "%6.3f" .Rho_sv}}\%
+\end{align*}
+}}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {{.Q.Title}}--选配箍筋
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(4) 最小配箍率
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	\rho_{sv,min} &= 0.24\frac{f_t}{f_{yv}} = 0.24\times \frac{ {{.F_t}} }{ {{.F_yv}} } = {{printf "%6.3f" .Rho_svmin}}\% \\
+%%%{{if .Rho_svLessThanRho_svmin}}	
+	\rho_{sv} &< \rho_{sv,min}, \text{取} \\
+	\rho_{sv} &= {{printf "%6.3f" .Rho_svmin}}\% \\
+%%%{{else}}	
+	\rho_{sv} &> \rho_{sv,min}, \text{取} \\
+	\rho_{sv} &= {{printf "%6.3f" .Rho_sv}}\% \\
+%%%{{end}}
+\end{align*} 
+}}
+	\uncover<2->{
+	(5) 取$\phi 8$双肢箍 
+\vspace{-0.8em} {\small 
+\begin{align*}	
+	n &= 2,\quad A_{sv1} = {{printf "%6.1f" .SV_area1}} \\
+%%%{{if .Rho_svLessThanRho_svmin}}	
+	s &= \frac{A_{sv}}{\rho b} = \frac{2\times {{printf "%6.1f" .SV_area1}} } { {{printf "%6.3f" .Rho_svmin}}\% \times {{.Q.B}} } 
+	   = {{printf "%5.0f" .SV_s}} \\
+%%%{{else}}	
+	s &= \frac{A_{sv}}{\rho b} = \frac{2\times {{printf "%6.1f" .SV_area1}} } { {{printf "%6.3f" .Rho_sv}}\% \times {{.Q.B}} } 
+	   = {{printf "%5.0f" .SV_s}} \\
+%%%{{end}}
+   	&\text{据规范表9.2.9查得：}s_{max} = {{.SV_smax}}\text{~,故取} \\
+%%%{{if .SV_sGreatThanSV_smax}}	
+	   s&= {{.SV_smax}}
+%%%{{else}}	
+	   s&= {{printf "%5.0f" .SV_s}}
+%%%{{end}}
+\end{align*}
+}}
+\end{frame}

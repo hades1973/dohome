@@ -1,0 +1,69 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {{.Q.Title}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]{ {{.Q.Title}} } \vspace{-0.1em}
+	%%{\small
+	已知：矩形截面梁$b\times h={{.Q.B}}\times {{.Q.H}}mm^2$承受弯矩设计值$M={{.Q.M}}kN\cdot m$。
+	混凝土强度等级{{.Q.C}}，受力纵筋采用{{.Q.S}}级钢筋。受压纵筋面积${{.Q.Ass}}mm^2$。
+
+	求：所需受拉纵筋面积$A_s$
+%%   	\begin{center}
+%%	\scalebox{0.3}{\includegraphics{./figures/BasicJob1.png}}
+%%	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {{.Q.Title}}--计算M_2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 计算$M_2$
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	a_s &= {{.Q.D_s}}mm \\
+	h_0 &= h- a_s = {{.Q.H}} - {{.Q.D_s}} = {{.H_0}}mm \\
+	M_2 &= M - f'_y A'_{s} (h_0 - a'_s)  \\
+            &= {{.Q.M}}\times 10^6 - {{.Fy}}\times{{.Q.Ass}}\times({{.H_0}} - {{.Q.D_ss}}) N\cdot m\\
+            &={{printf "%4.1f" .M_2}}kN\cdot m \\
+%%%			
+%%%{{if .M_2Negative}} 
+	M_2 &< 0, \text{受压纵筋不屈服，取}x=2a'_s, \\ 
+	    &\text{使用对受压钢筋合力点取矩的方程，有： }\\ 
+	A_s &= \frac{M}{f_y (h_0 - a'_s)} \\
+            &= \frac{ {{.Q.M}}\times10^6 }{ {{.Fy}}\times( {{.H_0}} - {{.Q.D_ss}} ) } \\
+            &= {{printf "%4.1f" .As}}mm^2 
+\end{align*} 
+}}
+\end{frame}
+
+%%%{{else}}	
+\end{align*} 
+}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {{.Q.Title}}--计算A_s
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+\uncover<2->{
+	(2) 计算$A_{s}$配筋计算
+	 \vspace{-0.8em} {\small
+\begin{align*}
+	\alpha_s &= \frac{M_2}{\alpha_1 fc b h^2_0} 
+	= \frac{ {{printf "%4.1f" .M_2}}\times10^6 }{1.0\times {{.Fc}}\times {{.Q.B}}\times {{.H_0}}^2}= {{printf "%4.3f" .Alpha_s}} \\
+	\alpha_{s,max} &= \xi_b(1-0.5\xi_b) = {{printf "%4.3f" .Alpha_smax}} \\ 
+	\alpha_s &\le \alpha_{s,max}, \text{受拉纵筋屈服} \\
+	\xi &= 1- \sqrt{1 - 2\alpha_s} = 1 - \sqrt{1- 2\times {{printf "%4.3f" .Alpha_s}} } = {{printf "%4.3f" .Xi}} \\
+	x &= \xi h_0 = {{printf "%4.3f" .Xi}}\times {{.H_0}} = {{printf "%4.1f" .X}} \\
+	2a'_s &= 2\times {{.Ass}} = {{.DoubleD_ss}} \\
+	x &< 2a'_s, \text{受压纵筋不屈服，取}x=2a'_s, \\ 
+	    &\text{使用对受压钢筋合力点去矩的方程，有： }\\ 
+	A_s &= \frac{M}{f_y (h_0 - a'_s)} \\
+            &= \frac{ {{.Q.M}}\times10^6 }{ {{.Fy}}\times( {{.H_0}} - {{.Q.D_ss}} ) } \\
+            &= {{printf "%4.1f" .As}}mm^2 
+\end{align*}
+}}
+\end{frame}
+%%
+%%%{{end}}
+

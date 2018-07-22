@@ -1,0 +1,56 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 例题2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]{作业题1} \vspace{-0.1em}
+	%%{\small
+	已知：矩形截面梁$b\times h={{.B}}\times {{.H}}mm^2$承受弯矩设计值$M={{.M}}kN\cdot m$。
+	混凝土强度等级{{.C}}，受力纵筋采用{{.S}}级钢筋。受压纵筋面积{{.ASt}}。
+
+	求：所需受拉纵筋面积$A_s$
+%%   	\begin{center}
+%%	\scalebox{0.3}{\includegraphics{./figures/BasicJob1.png}}
+%%	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 例题1--内力计算
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 计算$M_1, A_{s1}$
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	a_s &= {{.As}}mm \\
+	h_0 &= h- a_s = {{.H}} - {{.As}} = {{.H_0}}mm 
+	M_2 &= M - f'_y A'_{s} (h_0 - a'_s) = {{.M}}\times 10^6 - {{.Fy}}\times{{.ASc}}\times({{.H_0}} - {{.As}})={{.M_2}}kN\cdot m \\
+	A_{s1} &= \frac{f'_y A'_s}{f_y}=A'_s = {{.ASc}} \\
+\end{align*} 
+}}
+
+\uncover<3->{
+	(2) 计算$M_2, A_{s2}$配筋计算
+	 \vspace{-0.8em} {\small
+\begin{align*}
+	\alpha_s = \frac{M_2}{\alpha_1 fc b h^0} = \frac{ {{.M_2}} }{1.0\times {{.B}}\times {{.H_0}}^2}= {{.Alphas}} \\
+	\alpha_{s,max} = \xi(1-0.5\xi) = {{.Xi}}\times (1 - 0.5\times {{.Xi}} ) = {{.Alphas_max}} \\
+	{{if .Recaculate}} 
+	\alpha_s &> \alpha_{s,max}, \text{纵筋不屈服，取} \xi = \xi_b \text{重新计算：} \\
+	M_b &= \alpha_1 \alpha_{x,max} fc b h^2_0 = 1.0\times {{.Alphas_max}} \times {{.Fc}} \times {{.B}} \times {{.H_0}}^2 = {{.M_b}} \\
+	A'_s &= \frac{M - M_b}{f'_y (h_0 - a'_s)} = \frac{ {{.M}}\times10^6 - {{.M_b}} }{ {{.Fy}}\times( {{.H_0}} - {{.Ass}} )}= {{.ASc}} \\
+	A_s &= \frac{\alpha_1 f_c b \xi_b h_0 + f'_y A'_s}{f_y} = \frac{1.0\times {{.Fc}}\times {{.Xi_b}}\times {{.H_0}} + {{.Fy}}\times {{.ASc}}  }{ {{.Fy}} }
+	{{else}}
+	\xi &= 1- \sqrt{1 - 2\alpha_s} = 1 - \sqrt{1- 2\times {{.Alphas}} } = {{.Xi}} \\
+	x &= \xi h_0 = {{.Xi}}\times {{.H_0}} = {{.X}} \\
+	2a'_s &= 2\times {{.Ass}} = {{.DoubleAss}} \\
+		{{if .ResetX }}
+		x &< 2a'_s, \text{受压纵筋不屈服，取}x=2a'_s，使用对受压钢筋合力点去矩的方程，有： \\
+		A_s &= \frac{M}{f_y (h_0 - a'_s)} = \frac{ {{.M}}\times10^6 }{ {{.Fy}}\times( {{.H_0}} - {{.Ass}} ) } = {{.ASt}}
+		{{else}}
+		x &> 2a'_s, \text{受压纵筋屈服} \\
+		A_s &= \frac{\alpha_1 fc b x + f'_y A'_s}{f_y} = \frac{ 1.0\times {{.Fc}}\times {{.B}}\times {{.X}} + {{.Fy}}\times {{.ASc}} }{ {{.Fy}} } = {{.ASt}}
+		{{end}}
+	{{end}}
+\end{align*}
+}}
+\end{frame}

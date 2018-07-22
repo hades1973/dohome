@@ -1,0 +1,18 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {{.Titile}}--计算M_2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 计算$M_2$
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	a_s &= {{.As}}mm \\
+	h_0 &= h- a_s = {{.H}} - {{.As}} = {{.H_0}}mm \\
+	M_2 &= M - f'_y A'_{s} (h_0 - a'_s)  \\
+            &= {{.M}}\times 10^6 - {{.Fy}}\times{{.QASc}}\times({{.H_0}} - {{.As}}) N\cdot m\\
+            &={{printf "%4.1f" .M_2}}kN\cdot m \\
+\end{align*} 
+}}
+\end{frame}
+
+

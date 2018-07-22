@@ -1,0 +1,72 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 例题2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]{作业题1} \vspace{-0.1em}
+	%%{\small
+	已知：矩形截面梁$b\times h={{.b}}\times {{.h}}mm^2$承受弯矩设计值$M={{.M}}kN\cdot m$。
+	混凝土强度等级C40，受力纵筋采用HRB400级钢筋。受压纵筋采用4根25钢筋。
+
+	求：所需受拉纵筋面积$A_s$
+%%   	\begin{center}
+%%	\scalebox{0.3}{\includegraphics{./figures/BasicJob1.png}}
+%%	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 例题1--内力计算
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 计算$M_1, A_{s1}$
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	M_1 &= M - f'_y A'_{s} (h_0 - a'_s) = {{.M}} - {{.f_y}}\times{{.A_ss}}\times({{.h_0}} - {{.a_ss}})={{.M_1}}kN\cdot m \\
+	A_{s1} &= \frac{f'_y A'_s}{f_y}=A'_s = {{.A_ss}} \\
+\end{align*} 
+}}
+
+\uncover<3->{
+	(2) 计算$M_2, A_{s2}$配筋计算
+	 \vspace{-0.8em} {\small
+\begin{align*}
+	a_s &= {{.a_s}}mm \\
+	h_0 &= h- a_s = {{.h}} - {{.a_s}} = {{.h_0}}mm 
+\end{align*}
+}}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 例题1--配筋计算
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+\uncover<2->{
+	(2) 计算$M_2, A_{s2}$
+}
+\vspace{-0.8em}
+\uncover<3->{ \begin{align*}
+	\alpha_s &= \frac{M_1}{\alpha_1 f_c b h^2_0} = \frac{{{.M_1}}\times 10^6}{1.0\times 19.1\times 200\times 410^2} = 0.133 \\
+	\xi &= 1 - \sqrt{1- 2\alpha_s} = 1 - \sqrt{1- 2\times 0.133} = 0.143 \\
+	    &< \xi_b = 0.518, \text{纵筋能屈服} \\
+	A_s &= \frac{\alpha_1 f_c b \xi h_0}{f_y}=\frac{1.0\times 19.1\times 200\times 0.143\times 410}{360} = 624 mm^2
+\end{align*} }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 例题1--选筋及最小配筋率验算
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+\uncover<2->{
+	(3) 选筋及最小配筋率验算
+
+}
+\vspace{-0.8em}
+\uncover<3->{ \begin{align*}
+		&\text{选配2根20}, A_s = 628mm^2 \\
+	\rho &= \frac{A_s}{bh} = \frac{628}{200\times 450}=0.698\% \\
+	\rho_{min} &= max(0.2, 45f_t/f_y)\% = 0.22\% \\
+	\rho &> \rho_{min}, \text{可}
+\end{align*}}
+\end{frame}
+
+

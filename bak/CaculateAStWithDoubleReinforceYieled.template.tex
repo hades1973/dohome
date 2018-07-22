@@ -1,0 +1,36 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {{.Titile}}--计算M_2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 计算$M_2$
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	a_s &= {{.As}}mm \\
+	h_0 &= h- a_s = {{.H}} - {{.As}} = {{.H_0}}mm \\
+	M_2 &= M - f'_y A'_{s} (h_0 - a'_s)  \\
+            &= {{.M}}\times 10^6 - {{.Fy}}\times{{.QASc}}\times({{.H_0}} - {{.As}}) N\cdot m\\
+            &={{printf "%4.1f" .M_2}}kN\cdot m \\
+\end{align*} 
+}}
+\end{frame}
+
+
+
+\begin{frame}[plain]
+\uncover<2->{
+	(2) 计算$A_{s}$
+	 \vspace{-0.8em} {\small
+\begin{align*}
+	\alpha_s &= \frac{M_2}{\alpha_1 fc b h^2_0} = \frac{ {{printf "%4.1f" .M_2}}\times10^6 }{1.0\times {{.B}}\times {{.H_0}}^2}= {{printf "%4.3f" .Alphas}} \\
+	\alpha_{s,max} &= \xi_b(1-0.5\xi_b) = {{printf "%4.3f" .Alphas_max}} \\ 
+	\alpha_s &< \alpha_{s,max}, \text{纵向受拉钢筋屈服} \\
+	\xi &= 1- \sqrt{1 - 2\alpha_s} = 1 - \sqrt{1- 2\times {{printf "%4.3f" .Alphas}} } = {{printf "%4.3f" .Xi}} \\
+	x &= \xi h_0 = {{printf "%4.3f" .Xi}}\times {{.H_0}} = {{printf "%4.1f" .X}} \\
+	x &> 2a'_s, \text{受压纵筋屈服} \\
+	A_s &= \frac{\alpha_1 fc b x + f'_y A'_s}{f_y} \\
+            &= \frac{ 1.0\times {{.Fc}}\times {{.B}}\times {{printf "%4.1f" .X}} + {{.Fy}}\times {{printf "%4.1f" .ASc}} }{ {{.Fy}} } \\
+            &= {{printf "%4.1f" .ASt}} mm^2
+\end{align*}
+}}
+\end{frame}

@@ -1,0 +1,209 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 双筋矩形截面梁题1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]{ 双筋矩形截面梁题1 } \vspace{-0.1em}
+	%%{\small
+	已知：矩形截面梁$b\times h=200\times 500mm^2$承受弯矩设计值$M=330kN\cdot m$。
+	混凝土强度等级C40，受力纵筋采用HRB400级钢筋。受压纵筋面积$226.2mm^2$。
+
+	求：所需受拉纵筋面积$A_s$
+%%   	\begin{center}
+%%	\scalebox{0.3}{\includegraphics{./figures/BasicJob1.png}}
+%%	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 双筋矩形截面梁题1--计算M_2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 计算$M_2$
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	a_s &= 60mm \\
+	h_0 &= h- a_s = 500 - 60 = 440mm \\
+	M_2 &= M - f'_y A'_{s} (h_0 - a'_s)  \\
+            &= 330\times 10^6 - 360\times226.2\times(440 - 60) N\cdot m\\
+            &=297.0kN\cdot m \\
+\end{align*} 
+}}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 双筋矩形截面梁题1--计算A_s
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+\uncover<2->{
+	(2) 计算$A_{s}$配筋计算
+	 \vspace{-0.8em} {\small
+\begin{align*}
+	\alpha_s &= \frac{M_2}{\alpha_1 fc b h^2_0} 
+	= \frac{ 297.0\times10^6 }{1.0\times 19.1\times 200\times 440^2}= 0.402 \\
+	\alpha_{s,max} &= \xi_b(1-0.5\xi_b) = 0.384 \\ 
+	\alpha_s &> \alpha_{s,max}, \text{受拉纵筋不屈服，取} \xi = \xi_b \text{重新计算：} \\
+	M_b &= \alpha_1 \alpha_{s,max} fc b h^2_0 
+		= 1.0\times 0.384 \times 19.1 \times 200 \times 440^2 = 283.9kN\cdot m \\
+	A'_s &= \frac{M - M_b}{f'_y (h_0 - a'_s)} \\
+             &= \frac{ 330\times10^6 - 283.9\times10^6 }{ 360\times( 440 - 35 )} \\
+             &= 316.4 \\
+	A_s &= \frac{\alpha_1 f_c b \xi_b h_0 + f'_y A'_s}{f_y} \\
+		   &= \frac{1.0\times 19.1\times 200\times 0.518\times 440 + 360\times 316.4  }{ 360 } \\
+            &= 2734.9mm^2 
+\end{align*}
+}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 双筋矩形截面梁题2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]{ 双筋矩形截面梁题2 } \vspace{-0.1em}
+	%%{\small
+	已知：矩形截面梁$b\times h=200\times 500mm^2$承受弯矩设计值$M=330kN\cdot m$。
+	混凝土强度等级C40，受力纵筋采用HRB400级钢筋。受压纵筋面积$941mm^2$。
+
+	求：所需受拉纵筋面积$A_s$
+%%   	\begin{center}
+%%	\scalebox{0.3}{\includegraphics{./figures/BasicJob1.png}}
+%%	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 双筋矩形截面梁题2--计算M_2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 计算$M_2$
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	a_s &= 60mm \\
+	h_0 &= h- a_s = 500 - 60 = 440mm \\
+	M_2 &= M - f'_y A'_{s} (h_0 - a'_s)  \\
+            &= 330\times 10^6 - 360\times941\times(440 - 35) N\cdot m\\
+            &= 192.8 kN\cdot m \\
+\end{align*} 
+}}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 双筋矩形截面梁题2--计算A_s
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+\uncover<2->{
+	(2) 计算$A_{s}$配筋计算
+	 \vspace{-0.8em} {\small
+\begin{align*}
+	\alpha_s &= \frac{M_2}{\alpha_1 fc b h^2_0} 
+	= \frac{ 192.8\times10^6 }{1.0\times 19.1\times 200\times 440^2}= 0.261 \\
+	\alpha_{s,max} &= \xi_b(1-0.5\xi_b) = 0.384 \\ 
+	\alpha_s &< \alpha_{s,max}, \text{纵向受拉钢筋屈服} \\
+	\xi &= 1- \sqrt{1 - 2\alpha_s} = 1 - \sqrt{1- 2\times 0.261 } = 0.308 \\
+	x &= \xi h_0 = 0.308\times 440 = 135.6 \\
+	2a'_s &= 2\times 35 = 70 \\
+	x &> 2a'_s, \text{受压纵筋屈服} \\
+	A_s &= \frac{\alpha_1 fc b x + f'_y A'_s}{f_y} \\
+            &= \frac{ 1.0\times 19.1\times 200\times 135.6 + 360\times 941.0 }{ 360 } \\
+            &= 2379.9 mm^2
+\end{align*}
+}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 双筋矩形截面梁题3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]{ 双筋矩形截面梁题3 } \vspace{-0.1em}
+	%%{\small
+	已知：矩形截面梁$b\times h=200\times 500mm^2$承受弯矩设计值$M=330kN\cdot m$。
+	混凝土强度等级C40，受力纵筋采用HRB400级钢筋。受压纵筋面积$1964mm^2$。
+
+	求：所需受拉纵筋面积$A_s$
+%%   	\begin{center}
+%%	\scalebox{0.3}{\includegraphics{./figures/BasicJob1.png}}
+%%	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 双筋矩形截面梁题3--计算M_2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 计算$M_2$
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	a_s &= 60mm \\
+	h_0 &= h- a_s = 500 - 60 = 440mm \\
+	M_2 &= M - f'_y A'_{s} (h_0 - a'_s)  \\
+            &= 330\times 10^6 - 360\times1964\times(440 - 35) N\cdot m\\
+            &=43.6kN\cdot m \\
+%%%			
+%%%	
+\end{align*} 
+}}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 双筋矩形截面梁题3--计算A_s
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+\uncover<2->{
+	(2) 计算$A_{s}$配筋计算
+	 \vspace{-0.8em} {\small
+\begin{align*}
+	\alpha_s &= \frac{M_2}{\alpha_1 fc b h^2_0} 
+	= \frac{ 43.6\times10^6 }{1.0\times 19.1\times 200\times 440^2}= 0.059 \\
+	\alpha_{s,max} &= \xi_b(1-0.5\xi_b) = 0.384 \\ 
+	\alpha_s &\le \alpha_{s,max}, \text{受拉纵筋屈服} \\
+	\xi &= 1- \sqrt{1 - 2\alpha_s} = 1 - \sqrt{1- 2\times 0.059 } = 0.061 \\
+	x &= \xi h_0 = 0.061\times 440 = 26.8 \\
+	2a'_s &= 2\times 1964 = 70 \\
+	x &< 2a'_s, \text{受压纵筋不屈服，取}x=2a'_s, \\ 
+	    &\text{使用对受压钢筋合力点去矩的方程，有： }\\ 
+	A_s &= \frac{M}{f_y (h_0 - a'_s)} \\
+            &= \frac{ 330\times10^6 }{ 360\times( 440 - 35 ) } \\
+            &= 2263.4mm^2 
+\end{align*}
+}}
+\end{frame}
+%%
+%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 双筋矩形截面梁题4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]{ 双筋矩形截面梁题4 } \vspace{-0.1em}
+	%%{\small
+	已知：矩形截面梁$b\times h=200\times 500mm^2$承受弯矩设计值$M=330kN\cdot m$。
+	混凝土强度等级C40，受力纵筋采用HRB400级钢筋。受压纵筋面积$2454mm^2$。
+
+	求：所需受拉纵筋面积$A_s$
+%%   	\begin{center}
+%%	\scalebox{0.3}{\includegraphics{./figures/BasicJob1.png}}
+%%	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 双筋矩形截面梁题4--计算M_2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+	(1) 计算$M_2$
+	\uncover<2->{
+\vspace{-0.8em} {\small 
+\begin{align*}
+	a_s &= 60mm \\
+	h_0 &= h- a_s = 500 - 60 = 440mm \\
+	M_2 &= M - f'_y A'_{s} (h_0 - a'_s)  \\
+            &= 330\times 10^6 - 360\times2454\times(440 - 35) N\cdot m\\
+            &=-27.8kN\cdot m \\
+%%%			
+%%% 
+	M_2 &< 0, \text{受压纵筋不屈服，取}x=2a'_s, \\ 
+	    &\text{使用对受压钢筋合力点取矩的方程，有： }\\ 
+	A_s &= \frac{M}{f_y (h_0 - a'_s)} \\
+            &= \frac{ 330\times10^6 }{ 360\times( 440 - 35 ) } \\
+            &= 2263.4mm^2 
+\end{align*} 
+}}
+\end{frame}
+
+%%%
+
